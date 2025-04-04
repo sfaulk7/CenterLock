@@ -20,9 +20,6 @@ public class PlayerShoot : MonoBehaviour
     private float _shootCooldown = 1.0f;
 
     [SerializeField]
-    private float _bulletSpeed = 500.0f;
-
-    [SerializeField]
     private ParticleSystem _barrelFlash;
 
     private bool _shotRecently = false;
@@ -40,25 +37,22 @@ public class PlayerShoot : MonoBehaviour
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
         mousePosition.z = 0;
-        _bullet.transform.up = mousePosition;
+        _bulletSpawnPoint.GameObject().transform.up = mousePosition;
 
         //Sets bullet rotation and spawning position
         Vector3 bulletSpawnPosition = _bulletSpawnPoint.GameObject().transform.position;
         Quaternion rotation = _bulletSpawnPoint.GameObject().transform.rotation;
+        _bullet.transform.up = mousePosition;
 
-        //Sets the bullets velocity
-        _bullet.velocity = (_bullet.velocity * _bullet.transform.forward.magnitude) * _bulletSpeed;
-        
         //Spawns the bullet
-        Instantiate(_bullet, bulletSpawnPosition, rotation);
-
+        Instantiate(_bullet, bulletSpawnPosition * 15, rotation);
 
         //Play the barrel partical flash
         _barrelFlash.Play();
-        
+
         //Set _shotRecently to false after _shootCooldown
-        //_shotRecently = true;
-        //Invoke(nameof(SetShotRecentlyFalse), _shootCooldown);
+        _shotRecently = true;
+        Invoke(nameof(SetShotRecentlyFalse), _shootCooldown);
 
         return true;
     }
