@@ -7,14 +7,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShootLazer : MonoBehaviour
 {
 
     [SerializeField]
-    private Object _bulletSpawnPoint;
+    private Object _lazerSpawnPoint;
 
     [SerializeField]
-    private Rigidbody _bullet;
+    private Rigidbody _lazer;
 
     [SerializeField]
     private float _shootCooldown = 1.0f;
@@ -37,15 +37,15 @@ public class PlayerShoot : MonoBehaviour
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
         mousePosition.z = 0;
-        _bulletSpawnPoint.GameObject().transform.up = mousePosition;
+        _lazerSpawnPoint.GameObject().transform.up = mousePosition;
 
-        //Sets bullet rotation and spawning position
-        Vector3 bulletSpawnPosition = _bulletSpawnPoint.GameObject().transform.position;
-        Quaternion rotation = _bulletSpawnPoint.GameObject().transform.rotation;
-        _bullet.transform.up = mousePosition;
+        //Sets lazer rotation and spawning position
+        Vector3 lazerSpawnPosition = _lazerSpawnPoint.GameObject().transform.position;
+        Quaternion rotation = _lazerSpawnPoint.GameObject().transform.rotation;
+        _lazer.transform.up = mousePosition;
 
-        //Spawns the bullet
-        Instantiate(_bullet, bulletSpawnPosition * 15, rotation);
+        //Spawns the lazer
+        Instantiate(_lazer, lazerSpawnPosition * 15, rotation);
 
         //Play the barrel partical flash
         _barrelFlash.Play();

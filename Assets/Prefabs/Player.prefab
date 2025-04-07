@@ -226,8 +226,10 @@ GameObject:
   - component: {fileID: 1434917094810647100}
   - component: {fileID: 5965578204833657723}
   - component: {fileID: 8003809621020097205}
-  - component: {fileID: 3754592741114853953}
   - component: {fileID: 1098918491803454902}
+  - component: {fileID: 1540412610838181277}
+  - component: {fileID: 6986001410712581386}
+  - component: {fileID: 8320042963918536087}
   - component: {fileID: 5179198429468883055}
   m_Layer: 0
   m_Name: Player
@@ -326,22 +328,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3754592741114853953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5943233541513011168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cbc8e7d798fe1046aa685530d85254e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletSpawnPoint: {fileID: 8573353602709639699}
-  _bullet: {fileID: -451709145201790128, guid: e0d9cfdd842e63244a425f3aa3bbacec, type: 3}
-  _shootCooldown: 1
-  _barrelFlash: {fileID: 0}
 --- !u!114 &1098918491803454902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +341,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateSpeed: 5
+--- !u!114 &1540412610838181277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943233541513011168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657ee2be2c359524fb1ce853e96f9a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSpawnPoint: {fileID: 0}
+  _bullet: {fileID: -6434456796956451609, guid: 28327937bcf102c42bcab76a9d53efdd, type: 3}
+  _shootCooldown: 1
+  _barrelFlash: {fileID: 0}
+--- !u!114 &6986001410712581386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943233541513011168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc1cd4f48e562343afc1d6edb2fcb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lazerSpawnPoint: {fileID: 0}
+  _lazer: {fileID: -451709145201790128, guid: e0d9cfdd842e63244a425f3aa3bbacec, type: 3}
+  _shootCooldown: 1
+  _barrelFlash: {fileID: 0}
+--- !u!114 &8320042963918536087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943233541513011168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc325c96894062469fe4513e612e22a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingPoints: 0
+  _pointText: {fileID: 0}
 --- !u!54 &5179198429468883055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -380,7 +412,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 110
   m_CollisionDetection: 0
 --- !u!1 &7805992396618548972
 GameObject:

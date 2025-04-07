@@ -2,37 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BulletBehavior : MonoBehaviour
 {
+    //_bulletSpeed values will be a lot higher than other speed values as it doesnt accelerate,
+    //instead intantly taking off at top speed
     [SerializeField]
-    private float _bulletSpeed = 500.0f;
+    private float _bulletSpeed = 500;
 
+    private Rigidbody _bullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _bullet = GetComponent<Rigidbody>();
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        mousePosition.z = 0;
+        _bullet.transform.LookAt(mousePosition);
+
+        _bullet.AddForce(_bullet.transform.forward * _bulletSpeed);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //Sets the bullets velocity
-        //_bullet.velocity = ((_bullet.velocity) * _bullet.transform.up.magnitude) * _bulletSpeed;
-        //_bullet.velocity = (new Vector3(100, 100, 100));
-        //_bullet.AddForce(new Vector3(100, 100, 100));
 
-
-        //Vector3 deltaMovement = new Vector3();
-        //deltaMovement.x = 1 * 10000;
-        //AddForce(deltaMovement * 10000 * Time.deltaTime, ForceMode.Impulse);
-
-        //Vector3 newVelocity = _bullet.velocity;
-        //newVelocity.x = Mathf.Clamp(newVelocity.x, -10000, 10000);
-        //_bullet.velocity = newVelocity;
-
-        float j = 0.01f;
-        transform.Translate(transform.up * j);
     }
 }

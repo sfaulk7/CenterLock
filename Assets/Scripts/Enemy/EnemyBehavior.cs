@@ -8,28 +8,27 @@ public class EnemyBehavior : MonoBehaviour
     private float _speed = 1.0f;
 
     [SerializeField]
-    private float _acceleration = 5.0f;
+    private float _acceleration = 1.0f;
 
     [SerializeField]
-    private float _maxSpeed = 20.0f;
+    private float _maxSpeed = 5.0f;
 
-    [SerializeField]
-    private Rigidbody _player;
+
+    public Rigidbody Player;
 
     private Rigidbody _enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.up = _player.transform.position;
+        _enemy = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector3 deltaMovement = new Vector3();
-        deltaMovement.x = 1 * _acceleration;
-        _enemy.AddForce(deltaMovement * _acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        _enemy.transform.LookAt(Player.transform.position);
+        _enemy.AddForce(_enemy.transform.forward * _speed);
 
         Vector3 newVelocity = _enemy.velocity;
         newVelocity.x = Mathf.Clamp(newVelocity.x, -_maxSpeed, _maxSpeed);
