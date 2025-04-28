@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -14,10 +13,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Rigidbody _player;
 
+    private bool _spawning = false;
+    public bool EnemiesSpawning { get { return _spawning; } set { _spawning = value; } }
 
     // Start is called before the first frame update
     void Start()
     {
+        _spawning = true;
         Invoke(nameof(SpawnEnemy), _spawnRate);
     }
 
@@ -27,7 +29,10 @@ public class EnemySpawner : MonoBehaviour
         Enemy.GetComponent<EnemyBehavior>().Player = _player;
         Enemy.GetComponent<EnemyDeath>().Player = _player;
 
-        Invoke(nameof(SpawnEnemy), _spawnRate);
+        if (_spawning)
+        {
+            Invoke(nameof(SpawnEnemy), _spawnRate);
+        }
     }
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
     private PointSystem _pointSystem;
+    private HealthSystem _healthSystem;
 
     private bool _destroyed;
     public bool Destroyed { get { return _destroyed; } }
@@ -15,6 +16,7 @@ public class EnemyDeath : MonoBehaviour
     void Start()
     {
         _pointSystem = Player.GetComponent<PointSystem>();
+        _healthSystem = Player.GetComponent<HealthSystem>();
         _destroyed = false;
     }
 
@@ -38,21 +40,17 @@ public class EnemyDeath : MonoBehaviour
             return;
         }
 
-
         //If collision is with the player
         if (collision.gameObject.TryGetComponent(out PlayerRotateToMouse PlayerRotateToMouse))
         {
-            Invoke(nameof(DestroyEnemy), 0);
+            _healthSystem.DecreaseHealth();
+            Destroy(this.gameObject);
             return;
         }
+
         //If collision is with anything else
         else
         {
-            //Increase points
-            //_player.gameObject.GetComponent<PointSystem>().IncreasePoints();
-
-            
-
             //Destroy enemy
             DestroyEnemy();
 
@@ -64,6 +62,10 @@ public class EnemyDeath : MonoBehaviour
 
             return;
         }
+    }
+
+    private void Update()
+    {
 
     }
 }

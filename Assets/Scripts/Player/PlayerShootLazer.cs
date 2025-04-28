@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -70,7 +69,7 @@ public class PlayerShootLazer : MonoBehaviour
     void Update()
     {
         //Left click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Shoot();
         }
